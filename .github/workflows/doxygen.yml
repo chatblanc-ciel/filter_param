@@ -1,0 +1,36 @@
+name: Doxygen Action
+
+on:
+  push:
+#  pull_request:
+#    branches: [ master ]
+
+# if global evironment variables exist, use it.
+#env:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: mkdir -p './docs/_doxygen'
+      # You may pin to the exact commit or the version.
+      # uses: mattnotmitt/doxygen-action@5636578e966e739b7f06c7fa74b1b3e8267484a5
+      - uses: mattnotmitt/doxygen-action@1.9.3
+        with:
+          # Path to Doxyfile
+          doxyfile-path: ./.doxygen/Doxyfile_jp # default is ./Doxyfile
+          # Working directory
+          #working-directory: './docs/_doxygen' # default is .
+          # Generate latex documentation
+          enable-latex: false # optional
+        # Extra alpine packages for the build environment
+        #additional-packages: # optional, default is
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          enable_jekyll: true
+          publish_dir: ./docs/_doxygen/html
+          allow_empty_commit: false

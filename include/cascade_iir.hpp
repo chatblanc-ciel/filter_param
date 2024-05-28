@@ -1,11 +1,8 @@
-/*
- * filter_param.hpp
- *
- *  Created on: 2021/07/22
- *      Author: matsu
- *
- * This cord is written by UTF-8
- */
+//! @file cascade_iir.hpp
+//! @brief digital filter for cascade IIR filters
+//! @author chatblanc
+//! @details 詳細な説明
+//!
 
 #ifndef FILTER_PARAM_HPP_
 #define FILTER_PARAM_HPP_
@@ -30,9 +27,9 @@ template< typename... Args >
 std::string format( const std::string&, Args... );
 
 
-/* フィルタの種類を示す列挙体
- *
- */
+/// @brief フィルタの種類を示す列挙体
+///
+///
 enum class FilterType
 {
     LPF,
